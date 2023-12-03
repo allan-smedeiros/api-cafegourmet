@@ -77,7 +77,9 @@ const ProdutosPedido = connection.define(
 
 Cliente.hasMany(Pedido, { foreignKey: "id_cliente" });
 Pedido.belongsTo(Cliente, { foreignKey: "id_cliente" });
+
 Pedido.hasMany(ProdutosPedido, { foreignKey: "id_pedido" });
+Produto.hasMany(ProdutosPedido, { foreignKey: 'id_produto'})
 
 ProdutosPedido.belongsTo(Produto, { foreignKey: "id_produto" });
 ProdutosPedido.belongsTo(Pedido, { foreignKey: "id_pedido" });

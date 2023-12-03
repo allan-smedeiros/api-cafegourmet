@@ -13,15 +13,17 @@ module.exports = {
       });
 
       await ProdutosPedido.bulkCreate(
-        req.body.itens.map((item) => ({
-          nome: item.nome,
-          valor: item.valor,
-          quantidade: item.quantidade,
-          ingredientes: item.ingredientes,
-          id_produto: item.id,
-          id_pedido: novoPedido.id,
-        }))
-      );
+        req.body.itens.map((item) => {
+          return {
+            nome: item.nome,
+            valor: item.valor,
+            quantidade: item.quantidade,
+            ingredientes: item.ingredientes,
+            id_produto: item.id,
+            id_pedido: novoPedido.id,
+          }
+        })
+      )
 
       return res.status(201).json({ pedido: novoPedido });
     } catch (error) {
